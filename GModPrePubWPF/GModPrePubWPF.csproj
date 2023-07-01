@@ -98,9 +98,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SampleFiles\ExampleMap.bsp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SampleFiles\randomnamethatisnotthesameasthemap.png" />
+    <Resource Include="SampleFiles\wrongaspectratio.png" />
+    <Resource Include="SampleFiles\wrongformat.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace GModPrePubWPF.Classes
@@ -64,6 +65,10 @@ namespace GModPrePubWPF.Classes
 
         public void JSONCreation(string rootDirectory)
         {
+            string[] addonTags = new string[2];
+
+            addonTags[0] = Tag1;
+            addonTags[1] = Tag2;
 
             JSONFile jsonFile = new JSONFile();
             {
@@ -86,6 +91,12 @@ namespace GModPrePubWPF.Classes
             File.WriteAllText(rootDirectory + "/" + "addon.json", json);
         }
 
+        public void GMACreation(string rootFolder)
+        {
+            var process = Process.Start(GmadPath, "create " + "-folder " + rootFolder);
+
+            process.WaitForExit();
+        }
 
         public string Browse(FileType Type)
         {
@@ -155,4 +166,17 @@ namespace GModPrePubWPF.Classes
             return Directory;
         }
     }
+
+    public class JSONFile
+    {
+        public string title { get; set; }
+
+        public string type { get; set; }
+
+        public string[] tags { get; set; }
+
+        public IList<string> ignore { get; set; }
+
+    }
+
 }

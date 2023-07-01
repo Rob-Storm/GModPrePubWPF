@@ -238,8 +238,15 @@ namespace GModPrePubWPF
         {
             if(!firstTime)
             {
-                gma.Tag1 = cmbbxTag1.SelectedItem.ToString();
-                CheckTags(1, gma.Tag1);
+                if (cmbbxTag1.SelectedItem == itemNone)
+                {
+                    gma.Tag1 = null;
+                }
+                else
+                {
+                    gma.Tag1 = cmbbxTag1.SelectedItem.ToString();
+                    CheckTags(1, gma.Tag1, true);
+                }
             }
             
         }
@@ -248,15 +255,30 @@ namespace GModPrePubWPF
         {
             if(!firstTime)
             {
-                gma.Tag2 = cmbbxTag2.SelectedItem.ToString();
-                CheckTags(2, gma.Tag2);
+                if(cmbbxTag2.SelectedItem == item2None)
+                {
+                    gma.Tag2 = null;
+                }
+                else
+                {
+                    gma.Tag2 = cmbbxTag2.SelectedItem.ToString();
+                    CheckTags(2, gma.Tag2, true);
+                }
             }
         }
 
-        private void CheckTags(int TagNumber, string boxInput)
+        private void CheckTags(int TagNumber, string boxInput, bool noTag)
         {
-            string boxOutput = boxInput.Remove(0, 38);
-            Debug.Log($"Tag {TagNumber} set to {boxOutput}", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+            if(noTag)
+            {
+                Debug.Log($"Tag {TagNumber} has been set to None", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else
+            {
+                string boxOutput = boxInput.Remove(0, 38);
+                Debug.Log($"Tag {TagNumber} has been set to {boxOutput}", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            
 
         }
 

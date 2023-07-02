@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="900" Height="455" ResizeMode="NoResize">
     <Grid Width="900" Height="434">
-        <GroupBox x:Name="grpbxMapName" Header="Map Name" Width="250" Height="100" Margin="10,10,625,324" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTip="The name of your map (do not include file extensions!)">
+        <GroupBox x:Name="grpbxMapName" Header="Addon Name" Width="250" Height="100" Margin="10,10,625,324" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTip="The name of your map (do not include spaces or file extensions!)">
             <Grid>
                 <TextBox x:Name="txtbxName"  HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="218" KeyDown="txtbxName_KeyDown" TextChanged="txtbxName_Changed" LostFocus="txtbxName_LostFocus"/>
             </Grid>

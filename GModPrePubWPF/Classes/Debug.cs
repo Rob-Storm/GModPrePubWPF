@@ -31,6 +31,8 @@ namespace GModPrePubWPF.Classes
                     break;
 
             }
+            LogFile.WriteToFile(output);
+
             ScrollViewer.ScrollToBottom();
         }
     }

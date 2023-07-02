@@ -284,7 +284,6 @@ namespace GModPrePubWPF
 
         #endregion
 
-
         #region Output and GMA Creation
         private void txtbxOutputDirectory_TextChanged(object sender, TextChangedEventArgs e)
         {

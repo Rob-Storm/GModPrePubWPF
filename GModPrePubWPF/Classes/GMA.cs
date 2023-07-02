@@ -124,7 +124,7 @@ namespace GModPrePubWPF.Classes
                         output = output.Remove(pathLength, 17);
                         Directory = output;
 
-                        // Jank code reused from my winforms version of this tool still no better way to do this ugh
+                        // Jank code reused, if it aint broke dont fix it I guess
                     }
 
                     break;

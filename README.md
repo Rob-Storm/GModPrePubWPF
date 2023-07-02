@@ -2,6 +2,8 @@
 
 A little tool I wrote to automate the creation of the gma file when uploading a garry's mod map. You still need to use a program like crowbar to upload the map to the workshop. I could implement that myself but the way crowbar does it would blow this program out of the water.
 
+While the download is a single executable, I recommend you put it in a subfolder as it creates log files in its own folder and you may not be able to find them if the directory you put the program in is cluttered with files and folders.
+
 ## Installation
 
 1. Download from github (https://github.com/The1Wolfcast/GModPrePubHelper/releases)

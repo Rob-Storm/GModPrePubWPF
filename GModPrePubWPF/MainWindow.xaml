@@ -16,7 +16,7 @@
         <GroupBox x:Name="grpbxMapFile" Header="Map File" Width="300" Height="100" Margin="265,10,320,324" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTip="The path to your compile map file (.bsp)">
             <Grid>
                 <TextBox x:Name="txtbxBspPath" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="268" TextChanged="txtbxBspPath_TextChanged" KeyDown="txtbxBspPath_KeyDown" LostFocus="txtbxBspPath_LostFocus"/>
-                <Button x:Name="btnBspBrowse" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Click="btnBspBrowse_Click" Content="Browse"/>
+                <Button x:Name="btnBspBrowse" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Click="btnBspBrowse_Click" Content="Browse" Width="57" Height="20"/>
             </Grid>
         </GroupBox>
 
@@ -24,7 +24,7 @@
             <Grid>
                 <CheckBox x:Name="chkbxUsingThumbnail" Content="Using Thumbnail?" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Checked="chkbxUsingThumbnail_Checked" Unchecked="chkbxUsingThumbnail_Unchecked" ToolTip="Do you intend to use a custom thumbnail?"/>
                 <TextBox x:Name="txtbxThumbnailPath" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="268" TextChanged="txtbxThumbnailPath_TextChanged" KeyDown="txtbxThumbnailPath_KeyDown" LostFocus="txtbxThumbnailPath_LostFocus"/>
-                <Button x:Name="btnThumbnailBrowse" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Click="btnThumbnailBrowse_Click" Content="Browse"/>
+                <Button x:Name="btnThumbnailBrowse" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Click="btnThumbnailBrowse_Click" Content="Browse" Width="57" Height="20"/>
 
             </Grid>
         </GroupBox>
@@ -62,7 +62,7 @@
             <Grid>
                 <TextBox x:Name="txtbxGmadPath" HorizontalAlignment="Center" VerticalAlignment="Top" Width="268" TextChanged="txtbxGmadPath_TextChanged" KeyDown="txtbxGmadPath_KeyDown" LostFocus="txtbxGmadPath_LostFocus" Margin="0,10,0,0"/>
                 <Button x:Name="btnGmadDefaultPath" Content="Use Default Path" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Click="btnGmadDefaultPath_Click" ToolTip="Uses the default path gmad.exe will is likely stored in (usually C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\bin\gmad.exe)"/>
-                <Button x:Name="btnGmadBrowse" Content="Browse" Margin="107,33,124,24" Click="btnGmadBrowse_Click"/>
+                <Button x:Name="btnGmadBrowse" Content="Browse" Margin="107,33,124,24" Click="btnGmadBrowse_Click" Width="57" Height="20"/>
             </Grid>
         </GroupBox>
 
@@ -70,14 +70,14 @@
             <Grid>
                 <TextBox x:Name="txtbxOutputDirectory" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="268" TextChanged="txtbxOutputDirectory_TextChanged" KeyDown="txtbxOutputDirectory_KeyDown" LostFocus="txtbxOutputDirectory_LostFocus"/>
                 <Button x:Name="btnOutputDefaultPath" Content="Use Desktop" Margin="10,33,206,24" ToolTip="Stores the .gma file on your desktop" Click="btnOutputDefaultPath_Click"/>
-                <Button x:Name="btnOutputBrowse" Content="Browse" Margin="87,33,144,24" Click="btnOutputBrowse_Click"/>
+                <Button x:Name="btnOutputBrowse" Content="Browse" Margin="87,33,144,24" Click="btnOutputBrowse_Click" Width="57" Height="20"/>
                 <Button x:Name="btnCreateGMA" Content="Create GMA!" Margin="203,33,10,24" Click="btnCreateGMA_Click"/>
             </Grid>
         </GroupBox>
 
         <GroupBox x:Name="grpbxInfo" Header="Info Console" Margin="18,217,22,27">
             <ScrollViewer x:Name="sclvwrConsoleScroll" Background="#FF444444">
-                <TextBlock x:Name="txtInfoPanel" TextWrapping="Wrap"  Width="825" Foreground="White" Text="Info will show up here. Hover over the Group Box names for more info." FontSize="14"/>
+                <TextBlock x:Name="txtInfoPanel" TextWrapping="Wrap"  Width="825" Foreground="White" Text="Info will show up here. Hover over the Group Box names for more info. Be sure to share the log files if you run into any issues." FontSize="14"/>
             </ScrollViewer>
         </GroupBox>
     </Grid>

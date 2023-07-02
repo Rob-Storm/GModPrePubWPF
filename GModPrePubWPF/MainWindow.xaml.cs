@@ -8,6 +8,7 @@ using System.IO;
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace GModPrePubWPF
 {
@@ -54,14 +55,26 @@ namespace GModPrePubWPF
         {
             if(e.Key == Key.Enter) 
             {
-                Debug.Log($"Name is '{gma.Name}'", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+                CheckName();
             }
         }
         private void txtbxName_LostFocus(object sender, RoutedEventArgs e)
         {
-            Debug.Log($"Name is '{gma.Name}'", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
-
+            CheckName();
         }
+
+        private void CheckName()
+        {
+            if(string.IsNullOrEmpty(gma.Name))
+            {
+                Debug.Log($"Name is null or empty!", Debug.DebugType.Warning, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else
+            {
+                Debug.Log($"Name is '{gma.Name}'", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+            }
+        }
+
         #endregion
 
         #region Bsp
@@ -90,7 +103,7 @@ namespace GModPrePubWPF
 
         private void CheckBSPPath()
         {
-            if((gma.BspPath == null) || (gma.BspPath == string.Empty))
+            if(string.IsNullOrEmpty(gma.BspPath))
                 Debug.Log($"BSP path is null or empty!", Debug.DebugType.Warning, txtInfoPanel, sclvwrConsoleScroll);
             else if(!File.Exists(gma.BspPath))
                 Debug.Log($"BSP path is not valid!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
@@ -220,7 +233,7 @@ namespace GModPrePubWPF
             {
                 Debug.Log($"Gmad path is invalid!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
             }
-            else if((gma.GmadPath == null) || (gma.GmadPath == string.Empty))
+            else if(string.IsNullOrEmpty(gma.GmadPath))
             {
                 Debug.Log($"Gmad path is null or empty", Debug.DebugType.Warning, txtInfoPanel, sclvwrConsoleScroll);
             }
@@ -238,48 +251,23 @@ namespace GModPrePubWPF
         {
             if(!firstTime)
             {
-                if (cmbbxTag1.SelectedItem == itemNone)
-                {
-                    gma.Tag1 = null;
-                }
-                else
-                {
-                    gma.Tag1 = cmbbxTag1.SelectedItem.ToString();
-                    CheckTags(1, gma.Tag1, true);
-                }
+                gma.Tag1 = cmbbxTag1.SelectedItem.ToString().Remove(0, 38);
+                CheckTags(1, gma.Tag1);
             }
-            
         }
 
         private void cmbbxTag2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(!firstTime)
             {
-                if(cmbbxTag2.SelectedItem == item2None)
-                {
-                    gma.Tag2 = null;
-                }
-                else
-                {
-                    gma.Tag2 = cmbbxTag2.SelectedItem.ToString();
-                    CheckTags(2, gma.Tag2, true);
-                }
+                gma.Tag2 = cmbbxTag2.SelectedItem.ToString().Remove(0, 38);
+                CheckTags(2, gma.Tag2);
             }
         }
 
-        private void CheckTags(int TagNumber, string boxInput, bool noTag)
+        private void CheckTags(int TagNumber, string boxInput)
         {
-            if(noTag)
-            {
-                Debug.Log($"Tag {TagNumber} has been set to None", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
-            }
-            else
-            {
-                string boxOutput = boxInput.Remove(0, 38);
-                Debug.Log($"Tag {TagNumber} has been set to {boxOutput}", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
-            }
-            
-
+            Debug.Log($"Tag {TagNumber} has been set to {boxInput}", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
         }
 
         #endregion
@@ -316,21 +304,41 @@ namespace GModPrePubWPF
             txtbxOutputDirectory.Text = gma.OutputDirectory;
             CheckOutputDirectory();
         }
-
-        private void btnCreateGMA_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.Log($"Launching gmad.exe...", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
-            gma.Create(gma.Name, gma.BspPath, gma.ThumbPath, gma.GmadPath, gma.OutputDirectory);
-
-        }
-
         private void CheckOutputDirectory()
         {
             Debug.Log($"Output directory has been set to {gma.OutputDirectory}", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
         }
 
+        private void btnCreateGMA_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(gma.Name))
+            {
+                Debug.Log($"Name is null or empty!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else if (!File.Exists(gma.BspPath))
+            {
+                Debug.Log($"BSP Path is not valid!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else if (!File.Exists(gma.ThumbPath) && gma.UsingThumb)
+            {
+                Debug.Log($"Thumbnail is not valid! Set the correct path or disable the thumbnail!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else if (!File.Exists(gma.GmadPath))
+            {
+                Debug.Log($"gmad.exe path is not valid!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else if (string.IsNullOrEmpty(gma.OutputDirectory))
+            {
+                Debug.Log($"Output directory is null or empty!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else
+            {
+                Debug.Log($"Launching gmad.exe...", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+                Debug.Log($"----------------------", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+                gma.Create(txtInfoPanel, sclvwrConsoleScroll);
+            }
+        }
+
         #endregion
-
-
     }
 }

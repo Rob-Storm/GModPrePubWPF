@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Controls;
 
 namespace GModPrePubWPF.Classes
 {
@@ -15,6 +16,9 @@ namespace GModPrePubWPF.Classes
 
         public bool UsingThumb;
 
+        private TextBlock _textblock;
+        private ScrollViewer _scrollviewer;
+
         Nullable<bool> result;
 
         public enum FileType
@@ -25,9 +29,12 @@ namespace GModPrePubWPF.Classes
             Exe
         };
 
-        public void Create(string name, string bsppath, string thumbpath, string gmadpath, string outputdirectory)
+        public void Create(TextBlock TextBlock, ScrollViewer ScrollViewer)
         {
+            _textblock = TextBlock;
+            _scrollviewer = ScrollViewer;
 
+            FolderSetup();
         }
 
         public void FolderSetup()
@@ -67,6 +74,16 @@ namespace GModPrePubWPF.Classes
         {
             string[] addonTags = new string[2];
 
+            if(Tag1 == "None")
+            {
+                Tag1 = string.Empty;
+            }
+
+            if (Tag2 == "None")
+            {
+                Tag2 = string.Empty;
+            }
+
             addonTags[0] = Tag1;
             addonTags[1] = Tag2;
 
@@ -89,13 +106,28 @@ namespace GModPrePubWPF.Classes
             string json = JsonConvert.SerializeObject(jsonFile, Formatting.Indented);
 
             File.WriteAllText(rootDirectory + "/" + "addon.json", json);
+
+            GMACreation(rootDirectory);
         }
 
         public void GMACreation(string rootFolder)
         {
-            var process = Process.Start(GmadPath, "create " + "-folder " + rootFolder);
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            Process process = new Process();
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+
+            process.StartInfo.FileName = GmadPath;
+            process.StartInfo.Arguments = "create " + "-folder " + rootFolder;
+            process.Start();
+
+            string output = process.StandardOutput.ReadLine();
+            Debug.Log(output, Debug.DebugType.Information, _textblock, _scrollviewer);
 
             process.WaitForExit();
+            Debug.Log($"gmad.exe has closed check {OutputDirectory} for your .gma file. There is a chance it may not have worked! For whatever reason some of the message from gmad.exe are not being output, not my problem!", Debug.DebugType.Warning, _textblock, _scrollviewer);
+            Debug.Log($"----------------------", Debug.DebugType.Information, _textblock, _scrollviewer);
+
         }
 
         public string Browse(FileType Type)

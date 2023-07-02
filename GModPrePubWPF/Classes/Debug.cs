@@ -20,20 +20,27 @@ namespace GModPrePubWPF.Classes
             {
                 case DebugType.Information:
                     TextBlock.Inlines.Add(new Run($"\nInfo: {output}") { Foreground = Brushes.CornflowerBlue });
+                    WriteToLogFile($"Info: {output}");
                     break;
 
                 case DebugType.Warning:
                     TextBlock.Inlines.Add(new Run($"\nWarning: {output}") { Foreground = Brushes.Yellow });
+                    WriteToLogFile($"Warning: {output}");
                     break;
 
                 case DebugType.Error:
                     TextBlock.Inlines.Add(new Run($"\nError!: {output}") { Foreground = Brushes.Red });
+                    WriteToLogFile($"Error!: {output}");
                     break;
 
             }
-            LogFile.WriteToFile(output);
-
+            
             ScrollViewer.ScrollToBottom();
+        }
+
+        private static void WriteToLogFile(string input)
+        {
+            LogFile.WriteToFile(input);
         }
     }
 }

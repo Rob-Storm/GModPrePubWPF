@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Net.Http.Headers;
 using System.Reflection;
-using System.Text;
-using System.Windows.Media.Effects;
 
 namespace GModPrePubWPF.Classes
 {

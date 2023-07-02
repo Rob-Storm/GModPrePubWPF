@@ -1,14 +1,10 @@
 ﻿using GModPrePubWPF.Classes;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Drawing;
-using System.Windows.Media;
-using System.IO;
-using System;
-using System.Data;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace GModPrePubWPF
 {

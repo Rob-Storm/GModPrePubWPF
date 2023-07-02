@@ -30,7 +30,7 @@ While the download is a single executable, I recommend you put it in a subfolder
 
 ## For Additional Help
 
-Refer to: https://github.com/The1Wolfcast/GModPrePubHelper/wiki
+Feel free to reach out to me on Steam (https://steamcommunity.com/id/t1wc/) Discord (The1Wolfcast) or email (the1wolfacst@gmail.com) if you have any issues, make sure you include your log file and a description of your issue.
 
 Facepunch: https://wiki.facepunch.com/gmod/Workshop_Addon_Creation
 

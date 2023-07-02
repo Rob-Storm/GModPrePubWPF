@@ -65,6 +65,10 @@ namespace GModPrePubWPF
             {
                 Debug.Log($"Name is null or empty!", Debug.DebugType.Warning, txtInfoPanel, sclvwrConsoleScroll);
             }
+            else if(gma.Name.Contains(@"\") || gma.Name.Contains(@"/") || gma.Name.Contains(@" "))
+            {
+                Debug.Log($"Name contains invalid characters!", Debug.DebugType.Warning, txtInfoPanel, sclvwrConsoleScroll);
+            }
             else
             {
                 Debug.Log($"Name is '{gma.Name}'", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
@@ -310,6 +314,10 @@ namespace GModPrePubWPF
             if (string.IsNullOrEmpty(gma.Name))
             {
                 Debug.Log($"Name is null or empty!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else if(gma.Name.Contains(@"\") || gma.Name.Contains(@"/") || gma.Name.Contains(@" "))
+            {
+                Debug.Log($"Name contains invalid characters!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
             }
             else if (!File.Exists(gma.BspPath))
             {

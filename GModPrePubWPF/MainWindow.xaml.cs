@@ -337,7 +337,7 @@ namespace GModPrePubWPF
             }
             else
             {
-                Debug.Log($"Launching gmad.exe...", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
+                Debug.Log($"Starting .gma creation process", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
                 Debug.Log($"----------------------", Debug.DebugType.Information, txtInfoPanel, sclvwrConsoleScroll);
                 gma.Create(txtInfoPanel, sclvwrConsoleScroll);
             }

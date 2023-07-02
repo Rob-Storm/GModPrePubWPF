@@ -39,6 +39,9 @@ namespace GModPrePubWPF.Classes
 
         public void FolderSetup()
         {
+
+            Debug.Log($"Setting up folders", Debug.DebugType.Information, _textblock, _scrollviewer);
+
             string rootFolder = OutputDirectory + "/" + Name;
 
             string mapsFolder = rootFolder + "/" + "maps";
@@ -67,6 +70,7 @@ namespace GModPrePubWPF.Classes
                 File.Move(thumbFolder + "/" + Path.GetFileName(ThumbPath), customThumb + ".png");
             }
 
+            Debug.Log($"Creating addon.json file", Debug.DebugType.Information, _textblock, _scrollviewer);
             JSONCreation(rootFolder);
         }
 
@@ -107,6 +111,7 @@ namespace GModPrePubWPF.Classes
 
             File.WriteAllText(rootDirectory + "/" + "addon.json", json);
 
+            Debug.Log($"Starting gmad.exe", Debug.DebugType.Information, _textblock, _scrollviewer);
             GMACreation(rootDirectory);
         }
 
@@ -125,7 +130,7 @@ namespace GModPrePubWPF.Classes
             Debug.Log(output, Debug.DebugType.Information, _textblock, _scrollviewer);
 
             process.WaitForExit();
-            Debug.Log($"gmad.exe has closed check {OutputDirectory} for your .gma file. There is a chance it may not have worked! For whatever reason some of the message from gmad.exe are not being output, not my problem!", Debug.DebugType.Warning, _textblock, _scrollviewer);
+            Debug.Log($"gmad.exe has closed check {OutputDirectory} for your .gma file. There is a chance it may not have worked! For whatever reason some of the messages from gmad.exe are not being output, not my problem!", Debug.DebugType.Warning, _textblock, _scrollviewer);
             Debug.Log($"----------------------", Debug.DebugType.Information, _textblock, _scrollviewer);
 
         }

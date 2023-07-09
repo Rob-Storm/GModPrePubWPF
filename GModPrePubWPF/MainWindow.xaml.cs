@@ -229,13 +229,18 @@ namespace GModPrePubWPF
 
         private void CheckGmadPath()
         {
+            string executableName = Path.GetFileName(gma.GmadPath);
             if(!File.Exists(gma.GmadPath))
             {
-                Debug.Log($"Gmad path is invalid!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
+                Debug.Log($"Gmad path does not exist!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
             }
             else if(string.IsNullOrEmpty(gma.GmadPath))
             {
                 Debug.Log($"Gmad path is null or empty", Debug.DebugType.Warning, txtInfoPanel, sclvwrConsoleScroll);
+            }
+            else if(executableName != "gmad.exe")
+            {
+                Debug.Log($"Gmad path does not lead to correct program!", Debug.DebugType.Error, txtInfoPanel, sclvwrConsoleScroll);
             }
             else
             {

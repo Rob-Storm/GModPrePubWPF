@@ -126,11 +126,11 @@ namespace GModPrePubWPF.Classes
             process.StartInfo.Arguments = "create " + "-folder " + rootFolder;
             process.Start();
 
-            string output = process.StandardOutput.ReadLine();
+            string output = process.StandardOutput.ReadToEnd();
             Debug.Log(output, Debug.DebugType.Information, _textblock, _scrollviewer);
 
             process.WaitForExit();
-            Debug.Log($"gmad.exe has closed check {OutputDirectory} for your .gma file. There is a chance it may not have worked! For whatever reason some of the messages from gmad.exe are not being output, not my problem!", Debug.DebugType.Warning, _textblock, _scrollviewer);
+            Debug.Log($"gmad.exe has closed check {OutputDirectory} for your .gma file and the logs for any errors/warnings.", Debug.DebugType.Warning, _textblock, _scrollviewer);
             Debug.Log($"----------------------", Debug.DebugType.Information, _textblock, _scrollviewer);
 
         }

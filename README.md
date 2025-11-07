@@ -34,4 +34,4 @@ Feel free to reach out to me on Steam (https://steamcommunity.com/id/t1wc/) Disc
 
 Facepunch: https://wiki.facepunch.com/gmod/Workshop_Addon_Creation
 
-Video Demonstration: TO BE ADDED
+Video Demonstration: https://youtu.be/2Up_QpmPLxA
